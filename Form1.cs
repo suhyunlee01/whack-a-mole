@@ -12,7 +12,7 @@ namespace TIc_Tac_Toe
 {
     public partial class Form1 : Form
     {
-        //Form클래스와 Random구조체의 객체 생성
+        //Random구조체의 객체 생성
         Random random = new Random();
 
         public Form1()
@@ -29,11 +29,12 @@ namespace TIc_Tac_Toe
 
 
             //btnMole버튼의 초기 위치 설정 //Location 속성은 Point 객체를 받는다.
-            btnMole.Location = new Point(XCenter, YCenter);
+            //btnMole.Location = new Point(XCenter, YCenter);
+            MoleReset(XCenter, YCenter);
 
             //타이머객체의 이벤트핸들러를 통해서 위치 이동시킴
             timer1.Start();
-            timer1.Interval = 500;
+            timer1.Interval = 200;
         }
 
         private void btnMole_Click(object sender, EventArgs e)
@@ -46,9 +47,11 @@ namespace TIc_Tac_Toe
             //맨 처음 설정한 btnMole버튼의 초기 위치에서 벗어났을 때만 클릭 이벤트 발생하기
             if (btnMole.Location != new Point(XCenter, YCenter))
             {
-                MessageBox.Show("성공! 두더쥐를 잡았습니다!");
+                MessageBox.Show("성공! 두더지를 잡았습니다!");
             }
-            btnMole.Location = new Point(XCenter, YCenter);
+
+            //btnMole.Location = new Point(XCenter, YCenter);
+            MoleReset(XCenter, YCenter);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -61,20 +64,30 @@ namespace TIc_Tac_Toe
 
 
             //btnMole의 X/Y좌표를, 기존 X/Y좌표의 숫자 + 랜덤한 숫자로 이동하게 함.
-            int newX = btnMole.Location.X + random.Next(1, 100);
-            int newY = btnMole.Location.Y + random.Next(1, 100);
+            int X = btnMole.Location.X + random.Next(-400, 400);
+            int Y = btnMole.Location.Y + random.Next(-400, 400);
 
-            // 새로운 X/Y 좌표 위치를 Form1의 가로와 세로 경계 내로 조정
-            newX = Math.Max(0, Math.Min(XTop, newX)); //0~(X최대 길이~새로운 X좌표 위치)
-            newY = Math.Max(0, Math.Min(YTop, newY));
+            // 새로운 X/Y 좌표 위치를 Form1의 가로와 세로 경계 내로 조정함.
+            //Max메서드를 통해 0, n 중 큰 수를 xy좌표로 정함.
+            //n의 경우 XTop 혹은 X 좌표 중 작은 숫자를 n으로 정함.s
+            //즉, 0이 최솟값 / Xtop 혹은 X중 작은 쪽을 선택해서 최댓값으로 함. -> 이렇게 하면 xtop보다는 작고, 0보다는 큰 수를 XY좌표로 정할 수 있다.
+            X = Math.Max(0, Math.Min(XTop, X));
+            Y = Math.Max(0, Math.Min(YTop, Y));
 
-            btnMole.Location = new Point(newX, newY);
+            //X랑 Y값으로 위치 조정
+            MoleReset(X, Y);
 
 
             if (btnMole.Location.X == XTop && btnMole.Location.Y == YTop)
             {
-                btnMole.Location = new Point(XCenter, YCenter);
+                //센터 값으로 위치 초기화
+                MoleReset(XCenter, YCenter);
             }
+        }
+
+        private void MoleReset(int X, int Y)
+        {
+            btnMole.Location = new Point(X, Y);
         }
     }
 }

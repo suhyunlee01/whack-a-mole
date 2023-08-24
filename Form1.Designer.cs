@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnStart = new System.Windows.Forms.Button();
             this.btnMole = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -36,22 +37,35 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(214, 485);
+            this.btnStart.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnStart.FlatAppearance.BorderSize = 0;
+            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStart.Font = new System.Drawing.Font("Pretendard", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnStart.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStart.Location = new System.Drawing.Point(168, 506);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(272, 44);
+            this.btnStart.Size = new System.Drawing.Size(352, 44);
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "게임 시작";
-            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // btnMole
             // 
+            this.btnMole.BackColor = System.Drawing.Color.Linen;
+            this.btnMole.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnMole.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMole.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.btnMole.FlatAppearance.BorderSize = 0;
+            this.btnMole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMole.ForeColor = System.Drawing.Color.Transparent;
+            this.btnMole.Image = ((System.Drawing.Image)(resources.GetObject("btnMole.Image")));
             this.btnMole.Location = new System.Drawing.Point(281, 224);
             this.btnMole.Name = "btnMole";
+            this.btnMole.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnMole.Size = new System.Drawing.Size(107, 101);
             this.btnMole.TabIndex = 1;
-            this.btnMole.Text = "두더쥐";
-            this.btnMole.UseVisualStyleBackColor = true;
+            this.btnMole.UseVisualStyleBackColor = false;
             this.btnMole.Click += new System.EventHandler(this.btnMole_Click);
             // 
             // timer1
@@ -62,6 +76,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(684, 661);
             this.Controls.Add(this.btnMole);
             this.Controls.Add(this.btnStart);
