@@ -16,7 +16,8 @@ namespace TIc_Tac_Toe
         Random random = new Random();
 
 
-        //아래와 같은 방식은 아직 진입점(클래스의 메서드)에 도달하지 않아서 아직 Application.Run()이 실행되지 않았다. 따라서 Form1의 객체가 생성되지 않아 오류 발생함.
+        //아래와 같은 방식이 오류가 나는 이유가 궁금함.
+        //아직 진입점(클래스의 메서드)에 도달하지 않아서 아직 Application.Run()이 실행되지 않았음. 따라서 Form1의 객체가 생성되지 않아 오류 발생함.
 
         ////int XTop = this.Width - btnMole.Width;
         ////int YTop = this.Height - btnMole.Height;
@@ -24,16 +25,22 @@ namespace TIc_Tac_Toe
         ////int YCenter = YTop / 2;
 
 
-        //필드 이니셜라이저 방식을 통해 변수 초기화!
-        int XTop => (this.Width - btnMole.Width);
-        int YTop => (this.Height - btnMole.Height);
-        int XCenter => (XTop / 2);
-        int YCenter => (YTop / 2);
+        //일단 멤버 변수 만들고, 생성자에서 this를 통해 초기화하기
+        private int XTop;
+        private int YTop;
+        private int XCenter;
+        private int YCenter;
 
 
         public Form1()
         {
             InitializeComponent();
+
+            //this는 앱이 실행되면서 생성된 Form1의 객체임
+            XTop = this.Width - btnMole.Width;
+            YTop = this.Height - btnMole.Height;
+            XCenter = XTop / 2;
+            YCenter = YTop / 2;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
