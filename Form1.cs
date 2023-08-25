@@ -15,6 +15,22 @@ namespace TIc_Tac_Toe
         //Random구조체의 객체 생성
         Random random = new Random();
 
+
+        //아래와 같은 방식은 아직 진입점(클래스의 메서드)에 도달하지 않아서 아직 Application.Run()이 실행되지 않았다. 따라서 Form1의 객체가 생성되지 않아 오류 발생함.
+
+        ////int XTop = this.Width - btnMole.Width;
+        ////int YTop = this.Height - btnMole.Height;
+        ////int XCenter = XTop / 2;
+        ////int YCenter = YTop / 2;
+
+
+        //필드 이니셜라이저 방식을 통해 변수 초기화!
+        int XTop => (this.Width - btnMole.Width);
+        int YTop => (this.Height - btnMole.Height);
+        int XCenter => (XTop / 2);
+        int YCenter => (YTop / 2);
+
+
         public Form1()
         {
             InitializeComponent();
@@ -22,12 +38,6 @@ namespace TIc_Tac_Toe
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            //btnMole이 위치할 form1의 가로와 세로 정 가운데를 구하기 위해서 두 가로 세로 길이를 뺌.
-            //this = Form1안에서 form1 객체를 생성하지 않고 this 사용했음.
-            int XCenter = (this.Width - btnMole.Width)/2;
-            int YCenter = (this.Height - btnMole.Height)/2;
-
-
             //btnMole버튼의 초기 위치 설정 //Location 속성은 Point 객체를 받는다.
             //btnMole.Location = new Point(XCenter, YCenter);
             MoleReset(XCenter, YCenter);
@@ -41,9 +51,6 @@ namespace TIc_Tac_Toe
         {
             timer1.Stop();
 
-            int XCenter = (this.Width - btnMole.Width) / 2;
-            int YCenter = (this.Height - btnMole.Height) / 2;
-
             //맨 처음 설정한 btnMole버튼의 초기 위치에서 벗어났을 때만 클릭 이벤트 발생하기
             if (btnMole.Location != new Point(XCenter, YCenter))
             {
@@ -56,10 +63,6 @@ namespace TIc_Tac_Toe
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int XTop = this.Width - btnMole.Width;
-            int YTop = this.Height - btnMole.Height;
-            int XCenter = XTop / 2;
-            int YCenter = YTop / 2;
             //btnMole.Location = new Point(btnMole.Location.X + random.Next(1, 100), btnMole.Location.Y + random.Next(1, 100));
 
 
